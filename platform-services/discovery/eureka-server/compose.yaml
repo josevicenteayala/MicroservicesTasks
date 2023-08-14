@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  eureka-server:
+    image: 11stinfra/eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+
