@@ -1,0 +1,7 @@
+server:
+  port: 8083
+zuul:
+  routes:
+    foos:
+      path: /foos/**
+      url: http://localhost:8083/spring-zuul-foos-resource/foos
