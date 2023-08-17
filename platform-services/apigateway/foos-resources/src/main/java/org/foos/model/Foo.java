@@ -1,4 +1,4 @@
-package org.gateway.model;
+package org.foos.model;
 
 public class Foo {
     private long id;

@@ -11,6 +11,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>UIApplication</module>
+        <module>foos-resources</module>
     </modules>
 
     <dependencies>
