@@ -1,1 +1,24 @@
+version: '3.8'
+
 services:
+  common-service:
+    build:
+      context: ./common
+      dockerfile: Dockerfile
+    ports:
+      - "8085:8085"
+  one-service:
+    build:
+      context: ./one
+      dockerfile: Dockerfile
+    ports:
+      - "8086:8086"
+  two-service:
+    build:
+      context: ./two
+      dockerfile: Dockerfile
+    ports:
+      - "8087:8087"
+
+networks:
+  microservices-network:
