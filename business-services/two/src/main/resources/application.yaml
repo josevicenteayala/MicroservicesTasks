@@ -1,0 +1,8 @@
+server:
+  port: 8087
+
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
