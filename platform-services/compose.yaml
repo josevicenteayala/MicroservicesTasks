@@ -1,20 +1,35 @@
 version: '3.8'
 
 services:
-  apigateway:
-    image: your-business-services-image:tag
+  foos-resources:
+    build:
+      context: ./apigateway/foos-resources
+      dockerfile: Dockerfile
     ports:
-      - "8081:8080"
-    networks:
-      - microservices-network
-
-  discovery:
-    image: your-platform-services-image:tag
+      - "8083:8083"
+  uiapplication:
+    build:
+      context: ./apigateway/UIApplication
+      dockerfile: Dockerfile
     ports:
-      - "8082:8080"
-    networks:
-      - microservices-network
-
+      - "8084:8084"
+  eureka-client:
+    build:
+      context: ./discovery/eureka-client
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+  eureka-feign:
+    build:
+      context: ./discovery/eureka-feign
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+  eureka-server:
+    build:
+      context: ./discovery/eureka-server
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
 networks:
   microservices-network:
-
