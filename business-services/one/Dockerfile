@@ -10,5 +10,9 @@ COPY target/one-0.0.1-SNAPSHOT.jar /app/app.jar
 # Expose the port that your Spring Boot application will listen on
 EXPOSE 8086
 
+ENV SPRINGPROFILES=prod
+
+ENTRYPOINT ["java","-Dspring.profiles.active=${SPRINGPROFILES}","-jar", "-Dserver.port=8086", "-Dserver.address=0.0.0.0", "/app/app.jar"]
+
 # Run the Spring Boot application when the container starts
-CMD ["java", "-jar", "app.jar"]
+#CMD ["java", "-jar", "app.jar"]

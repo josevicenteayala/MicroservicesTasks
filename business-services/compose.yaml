@@ -13,6 +13,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8086:8086"
+    environment:
+      - "SPRINGPROFILES=prod,actuator"
   two-service:
     build:
       context: ./two
