@@ -1,35 +1,51 @@
 version: '3.8'
 
 services:
-  foos-resources:
-    build:
-      context: ./apigateway/foos-resources
-      dockerfile: Dockerfile
-    ports:
-      - "8083:8083"
-  uiapplication:
-    build:
-      context: ./apigateway/UIApplication
-      dockerfile: Dockerfile
-    ports:
-      - "8084:8084"
-  eureka-client:
-    build:
-      context: ./discovery/eureka-client
-      dockerfile: Dockerfile
-    ports:
-      - "8081:8081"
-  eureka-feign:
-    build:
-      context: ./discovery/eureka-feign
-      dockerfile: Dockerfile
-    ports:
-      - "8082:8082"
   eureka-server:
     build:
       context: ./discovery/eureka-server
       dockerfile: Dockerfile
     ports:
       - "8761:8761"
+    networks:
+      - microservices-network
+  foos-resources:
+    build:
+      context: ./apigateway/foos-resources
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    networks:
+      - microservices-network
+  uiapplication:
+    build:
+      context: ./apigateway/UIApplication
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    networks:
+      - microservices-network
+  eureka-client:
+    build:
+      context: ./discovery/eureka-client
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    networks:
+      - microservices-network
+    depends_on:
+      eureka-server:
+        condition: service_started
+  eureka-feign:
+    build:
+      context: ./discovery/eureka-feign
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    networks:
+      - microservices-network
+    depends_on:
+      eureka-server:
+        condition: service_started
 networks:
   microservices-network:
