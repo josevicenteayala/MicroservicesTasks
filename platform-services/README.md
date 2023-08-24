@@ -8,8 +8,8 @@ This Docker Compose configuration helps you set up a collection of microservices
 ### Clone the Repository:
 
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+git clone <https://github.com/josevicenteayala/MicroservicesTasks.git>
+cd <MicroservicesTasks>
 ```
 
 ### Directory Structure:
